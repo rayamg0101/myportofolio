@@ -30,7 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "muhammad-ghaisan-myportofolio.pws.cs.ui.ac.id"]
 
-PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
+PRODUCTION = os.getenv('PRODUCTION', 'False') == 'true'
 
 
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,6 +75,8 @@ TEMPLATES = [
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+WHITENOISE_USE_FINDERS = True
 
 WSGI_APPLICATION = 'portofolio.wsgi.application'
 
@@ -85,11 +88,11 @@ if PRODUCTION:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT'),
+            'NAME': os.getenv('muhammad.ghaisan'),
+            'USER': os.getenv('muhammad.ghaisan'),
+            'PASSWORD': os.getenv('8eQKZu6M'),
+            'HOST': os.getenv('10.119.106.139'),
+            'PORT': os.getenv('5432T'),
             'OPTIONS': {
                 'options': f"-c search_path={os.getenv('SCHEMA', 'public')}"
             }

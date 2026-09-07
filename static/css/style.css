@@ -120,20 +120,22 @@ h1, .brand {
 }
 
 .social-links {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    width: 100%;
 }
 
 .social-link {
-    display: inline-block;
+    display: block;
+    text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
     text-decoration: none;
     color: var(--paper);
     background-color: var(--ink);
     border-radius: var(--radius);
-    padding: 0.5rem 1.1rem;
+    padding: 0.5rem 0.6rem;
     transition: background-color 0.2s ease;
 }
 
@@ -190,6 +192,290 @@ h1, .brand {
     }
 
     .social-links {
-        justify-content: flex-start;
+        grid-template-columns: repeat(2, 1fr);
     }
+
+    /* Section Skills */
+.skill-section-container {
+    padding: 3rem 0;
+}
+
+/* Navigasi Tombol Atas */
+.skill-nav-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.skill-btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.skill-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Group & Judul Kategori */
+.skill-group {
+    margin-bottom: 3rem;
+}
+
+.group-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 0.4rem;
+}
+
+/* Grid Layouts */
+.cards-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cards-grid.cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.cards-grid.cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 67%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Kartu Skill */
+.skill-card {
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.skill-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin-bottom: 0.6rem;
+}
+
+.skill-card p {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+}
+
+/* Responsif Layar HP */
+@media (max-width: 600px) {
+    .cards-grid.cols-3,
+    .cards-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+    }
+}
+
+/* Styling Halaman Education */
+.education-section {
+    padding: 3rem 0;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom Sejajar */
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.edu-card {
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edu-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.edu-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+}
+
+.edu-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+}
+
+.edu-years {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Responsif Layar HP */
+@media (max-width: 600px) {
+    .education-grid {
+        grid-template-columns: 1fr; /* Jadi 1 kolom di layar HP */
+    }
+}
+
+/* Styling Halaman Experience */
+.experience-section {
+    padding: 3rem 0;
+}
+
+.exp-category {
+    margin-bottom: 3rem;
+}
+
+.exp-category h3 {
+    font-size: 1.3rem;
+    color: var(--accent-dark);
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Grid Layout Custom */
+.cards-grid.cols-1 {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Experience Card Styling */
+.exp-card {
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exp-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.exp-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 0.6rem;
+}
+
+.exp-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.25rem;
+}
+
+.exp-years {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Responsif Layar HP */
+@media (max-width: 600px) {
+    .cards-grid.cols-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Styling Section Achievement & Project */
+.portfolio-section {
+    padding: 3rem 0;
+}
+
+.showcase-card {
+    background-color: #ffffff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.showcase-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.showcase-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 0.85rem;
+}
+
+.showcase-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+}
+
+.showcase-sub {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+    margin-bottom: 0.2rem;
+}
+
+.showcase-location,
+.showcase-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.75rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+}
 }

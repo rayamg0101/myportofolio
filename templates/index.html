@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +16,6 @@
             <a href="#profile" class="brand">Muhammad Ghaisan Raya</a>
             <nav>
                 <a href="#profile">Profile</a>
-            </nav>
-            <nav>
-                <a href="#aboutme">About Me</a>
             </nav>
         </div>
     </header>
@@ -49,11 +47,251 @@
                         <a href="https://github.com/rayamg0101" class="social-link">GitHub</a>
                         <a href="https://www.linkedin.com/in/muhammad-ghaisan-raya-a1726b378/" class="social-link">LinkedIn</a>
                         <a href="mailto:mgraya0101@gmail.com" class="social-link">Email</a>
+
+                        <a href="#skill" class="social-link">Skills</a>
+                        <a href="#education" class="social-link">Education</a>
+                        <a href="#experience" class="social-link">Experience</a>
+                        <a href="#project" class="social-link">Project</a>
+                        <a href="#achievement" class="social-link">Achievement</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <section id="skill" class="skill-section-container container">
+    <h2 class="section-title">Skills</h2>
+
+    <!-- Tombol Kategori Utama -->
+    <div class="skill-nav-buttons">
+        <a href="#hard-skill" class="skill-btn">Hard Skill</a>
+        <a href="#soft-skill" class="skill-btn">Soft Skill</a>
+        <a href="#language" class="skill-btn">Language</a>
+    </div>
+
+    <!-- Tampilan Hard Skill -->
+    <div id="hard-skill" class="skill-group">
+        <h3 class="group-title">Hard Skill</h3>
+        <div class="cards-grid cols-3">
+            <div class="skill-card">
+                <img src="{% static 'img/math.jpeg' %}" alt="Mathematics" class="skill-icon">
+                <p>Mathematics</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/excel.jpeg' %}" alt="Excel" class="skill-icon">
+                <p>Excel</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/statistic.png' %}" alt="Statistics" class="skill-icon">
+                <p>Statistics</p>
+            </div>
+        </div>
+        <div class="cards-grid cols-2">
+            <div class="skill-card">
+                <img src="{% static 'img/quantitive.jpeg' %}" alt="Quantitative Knowledge" class="skill-icon">
+                <p>Quantitative Knowledge</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/patterns.jpeg' %}" alt="Understanding Patterns" class="skill-icon">
+                <p>Understanding Patterns</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tampilan Soft Skill -->
+    <div id="soft-skill" class="skill-group">
+        <h3 class="group-title">Soft Skill</h3>
+        <div class="cards-grid cols-3">
+            <div class="skill-card">
+                <img src="{% static 'img/badminton.jpeg' %}" alt="Badminton" class="skill-icon">
+                <p>Badminton</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/gym.jpeg' %}" alt="Gym" class="skill-icon">
+                <p>Gym</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/leadership.jpeg' %}" alt="Leadership" class="skill-icon">
+                <p>Leadership</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/cashier.jpeg' %}" alt="Cashier" class="skill-icon">
+                <p>Cashier</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/gaming.jpeg' %}" alt="Gaming" class="skill-icon">
+                <p>Gaming</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/tennis.jpeg' %}" alt="Tennis" class="skill-icon">
+                <p>Tennis</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tampilan Language -->
+    <div id="language" class="skill-group">
+        <h3 class="group-title">Language</h3>
+        <div class="cards-grid cols-3">
+            <div class="skill-card">
+                <img src="{% static 'img/english.png' %}" alt="English" class="skill-icon">
+                <p>English</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/japan.png' %}" alt="Japan" class="skill-icon">
+                <p>Japan</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/korea.png' %}" alt="Korea" class="skill-icon">
+                <p>Korea</p>
+            </div>
+        </div>
+        <div class="cards-grid cols-2">
+            <div class="skill-card">
+                <img src="{% static 'img/indonesia.png' %}" alt="Indonesia" class="skill-icon">
+                <p>Indonesia</p>
+            </div>
+            <div class="skill-card">
+                <img src="{% static 'img/arabic.jpeg' %}" alt="Arabic" class="skill-icon">
+                <p>Arabic</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="education" class="education-section-container">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-card">
+            <img src="{% static 'img\ui.png' %}" alt="University of Indonesia" class="edu-icon">
+            <h3>University of Indonesia</h3>
+            <p class="edu-years">2025-Present</p>
+        </div>
+        <div class="edu-card">
+            <img src="{% static 'img\albinaa.png' %}" alt="SMA IT Al Binaa Islamic Boarding School" class="edu-icon">
+            <h3>SMA IT Al Binaa Islamic Boarding School</h3>
+            <p class="edu-years">2022-2025</p>
+        </div>
+        <div class="edu-card">
+            <img src="{% static 'img\albinaa.png' %}" alt="SMP IT Al Binaa Islamic Boarding School" class="edu-icon">
+            <h3>SMP IT Al Binaa Islamic Boarding School</h3>
+            <p class="edu-years">2019-2022</p>
+        </div>
+        <div class="edu-card">
+            <img src="{% static 'img\alazhar.png' %}" alt="SD Islam Al Azhar Kelapa Gading" class="edu-icon">
+            <h3>SD Islam Al Azhar Kelapa Gading</h3>
+            <p class="edu-years">2013-2019</p>
+        </div>
+    </section>
+
+    <section id="experience" class="experience-section container">
+    <h2 class="section-title">Experience</h2>
+
+    <!-- Sub-Kategori Organization -->
+    <div class="exp-category">
+        <h3>Organization</h3>
+        <div class="cards-grid cols-2">
+            <div class="exp-card">
+                <img src="{% static 'img/LBM.jpeg' %}" alt="LBM Fasilkom UI" class="exp-icon">
+                <h4>LBM Fasilkom UI</h4>
+                <p class="exp-years">2025 - Present</p>
+            </div>
+            <div class="exp-card">
+                <img src="{% static 'img/jamthol.jpeg' %}" alt="Student Council of Albinaa" class="exp-icon">
+                <h4>Student Council of Albinaa</h4>
+                <p class="exp-years">2023 - 2024</p>
+            </div>
+        </div>
+        <div class="cards-grid cols-1">
+            <div class="exp-card">
+                <img src="{% static 'img/bsmr.jpeg' %}" alt="Youth Red Crescent" class="exp-icon">
+                <h4>Youth Red Crescent</h4>
+                <p class="exp-years">2019 - 2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sub-Kategori Committee -->
+    <div class="exp-category">
+        <h3>Committee</h3>
+        <div class="cards-grid cols-2">
+            <div class="exp-card">
+                <img src="{% static 'img/badminton.jpeg' %}" alt="Head of Badminton Fasilkom Student Activity Unit" class="exp-icon">
+                <h4>Head of Badminton Fasilkom Student Activity Unit</h4>
+                <p class="exp-years">2026 - Present</p>
+            </div>
+            <div class="exp-card">
+                <img src="{% static 'img/openhouse.jpeg' %}" alt="Volunteer of Open House Fasilkom UI" class="exp-icon">
+                <h4>Volunteer of Open House Fasilkom UI</h4>
+                <p class="exp-years">2025</p>
+            </div>
+            <div class="exp-card">
+                <img src="{% static 'img/jamthol.jpeg' %}" alt="Student Council Care" class="exp-icon">
+                <h4>Student Council Care</h4>
+                <p class="exp-years">2023 - 2024</p>
+            </div>
+            <div class="exp-card">
+                <img src="{% static 'img/alfest.jpeg' %}" alt="Al Binaa Festival 2024" class="exp-icon">
+                <h4>Al Binaa Festival 2024</h4>
+                <p class="exp-years">2024</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sub-Kategori Seminar -->
+    <div class="exp-category">
+        <h3>Seminar</h3>
+        <div class="cards-grid cols-1">
+            <div class="exp-card">
+                <img src="{% static 'img/ristalk.jpeg' %}" alt="RISTALK 2025" class="exp-icon">
+                <h4>RISTALK 2025</h4>
+                <p class="exp-years">2025</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Section Achievement -->
+<section id="achievement" class="portfolio-section container">
+    <h2 class="section-title">Achievement</h2>
+
+    <div class="cards-grid cols-1">
+        <!-- Bronze Medal I3O -->
+        <div class="showcase-card">
+            <img src="{% static 'img\Ghaisan Raya.pdf' %}" alt="Indonesia International IoT Olympiad" class="showcase-icon">
+            <h3>BRONZE MEDAL IN INDONESIA INTERNATIONAL IoT OLYMPIAD (I3O)</h3>
+            <p class="showcase-sub">2024 ONLINE COMPETITION</p>
+            <p class="showcase-location">(Undip, Semarang)</p>
+            <p class="showcase-date">(May 2024)</p>
+        </div>
+
+        <!-- Inaugurate of Bantara Schools -->
+        <div class="showcase-card">
+            <img src="{% static 'img/bantara.jpeg' %}" alt="Inaugurate of Bantara Schools" class="showcase-icon">
+            <h3>INAUGURATE OF BANTARA SCHOOLS</h3>
+            <p class="showcase-location">(Bekasi)</p>
+            <p class="showcase-date">(March 2024)</p>
+        </div>
+    </div>
+</section>
+
+<!-- Section Project -->
+<section id="project" class="portfolio-section container">
+    <h2 class="section-title">Project</h2>
+
+    <div class="cards-grid cols-1">
+        <!-- ATBPS Project -->
+        <div class="showcase-card project-card">
+            <img src="{% static 'img/atbps.jpeg' %}" alt="Automatic Time-Based Power Switch" class="showcase-icon">
+            <h3>Automatic Time-Based Power Switch (ATBPS)</h3>
+            <p class="showcase-date">(2023 - 2024)</p>
+            <p class="project-desc">
+                • Light switch programmed with Arduino programming for its usage process.
+                • The process of using it, namely starting from the Arduino IDE which is connected with cables to the 
+                switches where the Arduino IDE is programmed to work on the switches.
+            </p>
+        </div>
+    </div>
+</section>
 
     <footer class="site-footer">
         <div class="container">
