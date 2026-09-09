@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "main",
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ if PRODUCTION:
             'USER': os.getenv('muhammad.ghaisan'),
             'PASSWORD': os.getenv('8eQKZu6M'),
             'HOST': os.getenv('10.119.106.139'),
-            'PORT': os.getenv('5432T'),
+            'PORT': os.getenv('DB_PORT'),
             'OPTIONS': {
                 'options': f"-c search_path={os.getenv('SCHEMA', 'public')}"
             }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Ghaisan Raya - Portfolio</title>
+    <title>{{ name }} - Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
@@ -13,9 +13,10 @@
 <body>
     <header class="site-header">
         <div class="container">
-            <a href="#profile" class="brand">Muhammad Ghaisan Raya</a>
+            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
             <nav>
-                <a href="#profile">Profile</a>
+                <a href="{% url 'main:show_main' %}">Profile</a>
+                <a href="{% url 'main:show_experience' %}">Experience</a>
             </nav>
         </div>
     </header>
@@ -25,22 +26,22 @@
             <div class="container hero-grid">
                 <div class="hero-identity">
                     <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
-                    <h1>Muhammad Ghaisan Raya</h1>
+                    <h1>{{ name }}</h1>
                 </div>
                 <div class="hero-photo">
                     <div class="photo-block"></div>
-                    <img class="avatar" src="static\img\fotoSMA.png" alt="Photo of Raya">
+                    <img class="avatar" src="/static/img/burhan.png" alt="Photo of {{ name }}">
                 </div>
                 <div class="hero-details">
-                    <p class="bio">Halo, namaku Muhammad Ghaisan Raya. Kalian bisa memanggilku Raya. Aku adalah seorang mahasiswa Fakultas Ilmu Komputer Universitas Indonesia dan aku siap untuk menghadapi semua tantangan di sini.</p>
+                    <p class="bio">{{ bio }}</p>
                     <dl class="meta-list">
                         <div class="meta-row">
                             <dt>NPM</dt>
-                            <dd>2506624493</dd>
+                            <dd>{{ npm }}</dd>
                         </div>
                         <div class="meta-row">
                             <dt>Program</dt>
-                            <dd>S1 Ilmu Komputer</dd>
+                            <dd>{{ study_program }}</dd>
                         </div>
                     </dl>
                     <div class="social-links">
@@ -159,100 +160,12 @@
     </div>
 </section>
 
-    <section id="education" class="education-section-container">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-card">
-            <img src="{% static 'img\ui.png' %}" alt="University of Indonesia" class="edu-icon">
-            <h3>University of Indonesia</h3>
-            <p class="edu-years">2025-Present</p>
-        </div>
-        <div class="edu-card">
-            <img src="{% static 'img\albinaa.png' %}" alt="SMA IT Al Binaa Islamic Boarding School" class="edu-icon">
-            <h3>SMA IT Al Binaa Islamic Boarding School</h3>
-            <p class="edu-years">2022-2025</p>
-        </div>
-        <div class="edu-card">
-            <img src="{% static 'img\albinaa.png' %}" alt="SMP IT Al Binaa Islamic Boarding School" class="edu-icon">
-            <h3>SMP IT Al Binaa Islamic Boarding School</h3>
-            <p class="edu-years">2019-2022</p>
-        </div>
-        <div class="edu-card">
-            <img src="{% static 'img\alazhar.png' %}" alt="SD Islam Al Azhar Kelapa Gading" class="edu-icon">
-            <h3>SD Islam Al Azhar Kelapa Gading</h3>
-            <p class="edu-years">2013-2019</p>
-        </div>
+    <!-- Section Experience (Diarahkan ke Halaman Baru) -->
+    <section id="experience" class="container" style="text-align: center; padding: 3rem 0;">
+        <h2 class="section-title">Experience</h2>
+        <p style="margin-bottom: 1rem;">Lihat perjalanan dan pengalaman saya selengkapnya di halaman terpisah.</p>
+        <a href="{% url 'main:show_experience' %}" class="social-link">Buka Halaman Experience</a>
     </section>
-
-    <section id="experience" class="experience-section container">
-    <h2 class="section-title">Experience</h2>
-    <div class="skill-nav-buttons">
-        <a href="#organization" class="social-link">Organization</a>
-        <a href="#committee" class="social-link">Comittee</a>
-        <a href="#seminar" class="social-link">Seminar</a>
-    </div>
-    <!-- Sub-Kategori Organization -->
-    <div class="exp-category">
-        <h3>Organization</h3>
-        <div class="cards-grid cols-2">
-            <div class="exp-card">
-                <img src="{% static 'img/LBM.jpeg' %}" alt="LBM Fasilkom UI" class="exp-icon">
-                <h4>LBM Fasilkom UI</h4>
-                <p class="exp-years">2025 - Present</p>
-            </div>
-            <div class="exp-card">
-                <img src="{% static 'img/jamthol.jpeg' %}" alt="Student Council of Albinaa" class="exp-icon">
-                <h4>Student Council of Albinaa</h4>
-                <p class="exp-years">2023 - 2024</p>
-            </div>
-        </div>
-        <div class="cards-grid cols-1">
-            <div class="exp-card">
-                <img src="{% static 'img/bsmr.jpeg' %}" alt="Youth Red Crescent" class="exp-icon">
-                <h4>Youth Red Crescent</h4>
-                <p class="exp-years">2019 - 2024</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sub-Kategori Committee -->
-    <div class="exp-category">
-        <h3>Committee</h3>
-        <div class="cards-grid cols-2">
-            <div class="exp-card">
-                <img src="{% static 'img/badminton.jpeg' %}" alt="Head of Badminton Fasilkom Student Activity Unit" class="exp-icon">
-                <h4>Head of Badminton Fasilkom Student Activity Unit</h4>
-                <p class="exp-years">2026 - Present</p>
-            </div>
-            <div class="exp-card">
-                <img src="{% static 'img/openhouse.jpeg' %}" alt="Volunteer of Open House Fasilkom UI" class="exp-icon">
-                <h4>Volunteer of Open House Fasilkom UI</h4>
-                <p class="exp-years">2025</p>
-            </div>
-            <div class="exp-card">
-                <img src="{% static 'img/jamthol.jpeg' %}" alt="Student Council Care" class="exp-icon">
-                <h4>Student Council Care</h4>
-                <p class="exp-years">2023 - 2024</p>
-            </div>
-            <div class="exp-card">
-                <img src="{% static 'img/alfest.jpeg' %}" alt="Al Binaa Festival 2024" class="exp-icon">
-                <h4>Al Binaa Festival 2024</h4>
-                <p class="exp-years">2024</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Sub-Kategori Seminar -->
-    <div class="exp-category">
-        <h3>Seminar</h3>
-        <div class="cards-grid cols-1">
-            <div class="exp-card">
-                <img src="{% static 'img/ristalk.jpeg' %}" alt="RISTALK 2025" class="exp-icon">
-                <h4>RISTALK 2025</h4>
-                <p class="exp-years">2025</p>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- Section Achievement -->
 <section id="achievement" class="portfolio-section container">
@@ -299,7 +212,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2026 Raya. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
+            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
         </div>
     </footer>
 </body>
