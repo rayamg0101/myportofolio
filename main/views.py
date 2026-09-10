@@ -4,8 +4,8 @@ from main.models import Experience
 # Create your views here.
 def show_main(request):
     context = {
-        "name": "Burhan",
-        "npm": "2206000000",
+        "name": "Muhammad Ghaisan Raya",
+        "npm": "2506624493",
         "study_program": "S1 Ilmu Komputer",
         "bio": (
             "A Computer Science student at Universitas Indonesia interested "
@@ -17,7 +17,7 @@ def show_main(request):
 
 def show_experience(request):
     context = {
-        "name": "Burhan",
+        "name": "Muhammad Ghaisan Raya",
         "experience_list": Experience.objects.all(),
     }
     return render(request, "experience.html", context)
