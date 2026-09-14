@@ -186,6 +186,7 @@ h1, .brand {
             "photo"
             "details";
     }
+}
 
     .hero-photo {
         max-width: 220px;
@@ -196,286 +197,274 @@ h1, .brand {
     }
 
     /* Section Skills */
-.skill-section-container {
-    padding: 3rem 0;
+.skill-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
 }
 
-/* Navigasi Tombol Atas */
-.skill-nav-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-}
-
-.skill-btn {
-    display: inline-block;
-    padding: 0.6rem 1.5rem;
-    background-color: var(--ink);
-    color: var(--paper);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border-radius: var(--radius);
-    transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-.skill-btn:hover {
-    background-color: var(--accent);
-    transform: translateY(-2px);
-}
-
-/* Group & Judul Kategori */
-.skill-group {
-    margin-bottom: 3rem;
-}
-
-.group-title {
-    font-size: 1.25rem;
+.section-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
     font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 1.25rem;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 0.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-/* Grid Layouts */
-.cards-grid {
+.skill-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.skill-grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
-    margin-bottom: 1rem;
 }
 
-.cards-grid.cols-3 {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.cards-grid.cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 67%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Kartu Skill */
 .skill-card {
-    background-color: #ffffff;
+    padding: 1.25rem;
+    background-color: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.25rem 1rem;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.skill-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.skill-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
 }
 
-.skill-icon {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    margin-bottom: 0.6rem;
+.skill-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
 }
 
-.skill-card p {
-    font-size: 0.9rem;
+.skill-description,
+.empty-state {
+    color: var(--text-muted);
+}
+
+.skill-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    color: var(--ink);
-    margin: 0;
-}
-
-/* Responsif Layar HP */
-@media (max-width: 600px) {
-    .cards-grid.cols-3,
-    .cards-grid.cols-2 {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 100%;
-    }
 }
 
 /* Styling Halaman Education */
 .education-section {
-    padding: 3rem 0;
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.education-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
 }
 
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 Kolom Sejajar */
-    gap: 1.5rem;
-    max-width: 800px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
 }
 
-.edu-card {
-    background-color: #ffffff;
+.education-card {
+    padding: 1.25rem;
+    background-color: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.edu-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.edu-icon {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 0.75rem;
-}
-
-.edu-card h3 {
-    font-size: 1.1rem;
+.education-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 0.25rem;
+    text-transform: uppercase;
 }
 
-.edu-years {
-    font-size: 0.9rem;
+.education-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.education-description,
+.empty-state {
     color: var(--text-muted);
-    font-weight: 500;
 }
 
-/* Responsif Layar HP */
-@media (max-width: 600px) {
-    .education-grid {
-        grid-template-columns: 1fr; /* Jadi 1 kolom di layar HP */
-    }
+.education-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
-
 /* Styling Halaman Experience */
 .experience-section {
-    padding: 3rem 0;
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
 }
 
-.exp-category {
-    margin-bottom: 3rem;
-}
-
-.exp-category h3 {
-    font-size: 1.3rem;
+.section-kicker {
     color: var(--accent-dark);
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 0.4rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-/* Grid Layout Custom */
-.cards-grid.cols-1 {
-    grid-template-columns: 1fr;
-    max-width: 380px;
-    margin-left: auto;
-    margin-right: auto;
+.experience-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
 }
 
-/* Experience Card Styling */
-.exp-card {
-    background-color: #ffffff;
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.experience-card {
+    padding: 1.25rem;
+    background-color: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.25rem 1rem;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.exp-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.exp-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    margin-bottom: 0.6rem;
-}
-
-.exp-card h4 {
-    font-size: 1rem;
+.experience-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 0.25rem;
+    text-transform: uppercase;
 }
 
-.exp-years {
-    font-size: 0.85rem;
+.experience-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.experience-description,
+.empty-state {
     color: var(--text-muted);
-    font-weight: 500;
 }
 
-/* Responsif Layar HP */
-@media (max-width: 600px) {
-    .cards-grid.cols-2 {
-        grid-template-columns: 1fr;
-    }
+.experience-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 /* Styling Section Achievement & Project */
-.portfolio-section {
-    padding: 3rem 0;
+.achievement-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
 }
 
-.showcase-card {
-    background-color: #ffffff;
+.section-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.achievement-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.achievement-card {
+    padding: 1.25rem;
+    background-color: #fff;
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.75rem 1.5rem;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.showcase-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.showcase-icon {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    margin-bottom: 0.85rem;
-}
-
-.showcase-card h3 {
-    font-size: 1.05rem;
+.achievement-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--ink);
-    line-height: 1.35;
-    margin-bottom: 0.35rem;
+    text-transform: uppercase;
 }
 
-.showcase-sub {
+.achievement-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.achievement-description,
+.empty-state {
+    color: var(--text-muted);
+}
+
+.achievement-status {
+    margin-top: 1rem;
     font-size: 0.85rem;
     font-weight: 600;
+}
+
+.project-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-kicker {
     color: var(--accent-dark);
-    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-.showcase-location,
-.showcase-date {
+.project-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.project-card {
+    padding: 1.25rem;
+    background-color: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.project-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.project-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.project-description,
+.empty-state {
+    color: var(--text-muted);
+}
+
+.project-status {
+    margin-top: 1rem;
     font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 500;
-}
-
-.project-desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    margin-top: 0.75rem;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.5;
-}
+    font-weight: 600;
 }

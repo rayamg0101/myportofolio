@@ -60,105 +60,18 @@
         </section>
     </main>
 
-    <section id="skill" class="skill-section-container container">
-    <h2 class="section-title">Skills</h2>
+    <section id="skills" class="container" style="text-align: center; padding: 3rem 0;">
+        <h2 class="section-title">Skills</h2>
+        <p style="margin-bottom: 1rem;">Lihat skill saya selengkapnya di halaman terpisah.</p>
+        <a href="{% url 'main:show_skills' %}" class="social-link">Buka Halaman Skills</a>
+    </section>
 
-    <!-- Tombol Kategori Utama -->
-    <div class="skill-nav-buttons">
-        <a href="#hard-skill" class="social-link">Hard Skill</a>
-        <a href="#soft-skill" class="social-link">Soft Skill</a>
-        <a href="#language" class="social-link">Language</a>
-    </div>
+    <section id="education" class="container" style="text-align: center; padding: 3rem 0;">
+        <h2 class="section-title">Education</h2>
+        <p style="margin-bottom: 1rem;">Lihat pendidikan saya selengkapnya di halaman terpisah.</p>
+        <a href="{% url 'main:show_education' %}" class="social-link">Buka Halaman Education</a>
+    </section>
 
-    <!-- Tampilan Hard Skill -->
-    <div id="hard-skill" class="skill-group">
-        <h3 class="group-title">Hard Skill</h3>
-        <div class="cards-grid cols-3">
-            <div class="skill-card">
-                <img src="{% static 'img/math.jpeg' %}" alt="Mathematics" class="skill-icon">
-                <p>Mathematics</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/excel.jpeg' %}" alt="Excel" class="skill-icon">
-                <p>Excel</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/statistic.png' %}" alt="Statistics" class="skill-icon">
-                <p>Statistics</p>
-            </div>
-        </div>
-        <div class="cards-grid cols-2">
-            <div class="skill-card">
-                <img src="{% static 'img/quantitive.jpeg' %}" alt="Quantitative Knowledge" class="skill-icon">
-                <p>Quantitative Knowledge</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/patterns.jpeg' %}" alt="Understanding Patterns" class="skill-icon">
-                <p>Understanding Patterns</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tampilan Soft Skill -->
-    <div id="soft-skill" class="skill-group">
-        <h3 class="group-title">Soft Skill</h3>
-        <div class="cards-grid cols-3">
-            <div class="skill-card">
-                <img src="{% static 'img/badminton.jpeg' %}" alt="Badminton" class="skill-icon">
-                <p>Badminton</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/gym.jpeg' %}" alt="Gym" class="skill-icon">
-                <p>Gym</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/leadership.jpeg' %}" alt="Leadership" class="skill-icon">
-                <p>Leadership</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/cashier.jpeg' %}" alt="Cashier" class="skill-icon">
-                <p>Cashier</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/gaming.jpeg' %}" alt="Gaming" class="skill-icon">
-                <p>Gaming</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/tennis.jpeg' %}" alt="Tennis" class="skill-icon">
-                <p>Tennis</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tampilan Language -->
-    <div id="language" class="skill-group">
-        <h3 class="group-title">Language</h3>
-        <div class="cards-grid cols-3">
-            <div class="skill-card">
-                <img src="{% static 'img/english.png' %}" alt="English" class="skill-icon">
-                <p>English</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/japan.png' %}" alt="Japan" class="skill-icon">
-                <p>Japan</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/korea.png' %}" alt="Korea" class="skill-icon">
-                <p>Korea</p>
-            </div>
-        </div>
-        <div class="cards-grid cols-2">
-            <div class="skill-card">
-                <img src="{% static 'img/indonesia.png' %}" alt="Indonesia" class="skill-icon">
-                <p>Indonesia</p>
-            </div>
-            <div class="skill-card">
-                <img src="{% static 'img/arabic.jpeg' %}" alt="Arabic" class="skill-icon">
-                <p>Arabic</p>
-            </div>
-        </div>
-    </div>
-</section>
 
     <!-- Section Experience (Diarahkan ke Halaman Baru) -->
     <section id="experience" class="container" style="text-align: center; padding: 3rem 0;">
@@ -168,47 +81,18 @@
     </section>
 
 <!-- Section Achievement -->
-<section id="achievement" class="portfolio-section container">
-    <h2 class="section-title">Achievement</h2>
-
-    <div class="cards-grid cols-1">
-        <!-- Bronze Medal I3O -->
-        <div class="showcase-card">
-            <img src="{% static 'img\Ghaisan Raya.pdf' %}" alt="Indonesia International IoT Olympiad" class="showcase-icon">
-            <h3>BRONZE MEDAL IN INDONESIA INTERNATIONAL IoT OLYMPIAD (I3O)</h3>
-            <p class="showcase-sub">2024 ONLINE COMPETITION</p>
-            <p class="showcase-location">(Undip, Semarang)</p>
-            <p class="showcase-date">(May 2024)</p>
-        </div>
-
-        <!-- Inaugurate of Bantara Schools -->
-        <div class="showcase-card">
-            <img src="{% static 'img/bantara.jpeg' %}" alt="Inaugurate of Bantara Schools" class="showcase-icon">
-            <h3>INAUGURATE OF BANTARA SCHOOLS</h3>
-            <p class="showcase-location">(Bekasi)</p>
-            <p class="showcase-date">(March 2024)</p>
-        </div>
-    </div>
-</section>
+    <section id="achievement" class="container" style="text-align: center; padding: 3rem 0;">
+        <h2 class="section-title">Achievement</h2>
+        <p style="margin-bottom: 1rem;">Lihat prestasi saya selengkapnya di halaman terpisah.</p>
+        <a href="{% url 'main:show_achievement' %}" class="social-link">Buka Halaman Achievement</a>
+    </section>
 
 <!-- Section Project -->
-<section id="project" class="portfolio-section container">
-    <h2 class="section-title">Project</h2>
-
-    <div class="cards-grid cols-1">
-        <!-- ATBPS Project -->
-        <div class="showcase-card project-card">
-            <img src="{% static 'img/atbps.jpeg' %}" alt="Automatic Time-Based Power Switch" class="showcase-icon">
-            <h3>Automatic Time-Based Power Switch (ATBPS)</h3>
-            <p class="showcase-date">(2023 - 2024)</p>
-            <p class="project-desc">
-                • Light switch programmed with Arduino programming for its usage process.
-                • The process of using it, namely starting from the Arduino IDE which is connected with cables to the 
-                switches where the Arduino IDE is programmed to work on the switches.
-            </p>
-        </div>
-    </div>
-</section>
+    <section id="project" class="container" style="text-align: center; padding: 3rem 0;>
+        <h2 class="section-title">Proyek</h2>
+        <p style="margin-bottom: 1rem;">Lihat proyek saya selengkapnya di halaman terpisah.</p>
+        <a href="{% url 'main:show_project' %}" class="social-link">Buka Halaman Proyek</a>
+    </section>
 
     <footer class="site-footer">
         <div class="container">
