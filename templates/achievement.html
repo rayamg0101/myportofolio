@@ -4,36 +4,60 @@
 
     <!-- Poin 3: Seluruh elemen <main>...</main> diganti dengan kode panduan -->
     <main>
-        <section class="achievement-section" id="achievement">
+            <section class="achievement-section" id="achievement">
             <div class="container">
-                <p class="section-kicker">My journey so far</p>
-                <h1>Achievement</h1>
-
-                <div class="achievement-grid">
+                <p class="section-kicker">Prestasi yang saya bangun</p>
+                <div class="project-header">
+                    <h1>Achievements</h1>
+                    <a href="{% url 'main:create_achievement' %}"
+                       class="button achievement-add-button">
+                        <span aria-hidden="true">+</span>
+                        Tambah Achievement
+                    </a>
+                </div>
+                <form method="get"
+                      action="{% url 'main:show_achievement' %}"
+                      class="achievement-search">
+                    <input type="search"
+                           name="title"
+                           value="{{ title_query }}"
+                           placeholder="Cari berdasarkan nama Achievement"
+                           class="achievement-search__input"
+                           aria-label="Cari berdasarkan nama Achievement">
+                    <button type="submit" class="button">Cari</button>
+                </form>
+                <div class="achievement-grid project-grid">
                     {% for achievement in achievement_list %}
-                    <article class="achievement-card">
-                        <span class="achievement-category">
-                            {{achievement.get_category_display }}
-                        </span>
-                        <h2>{{achievement.title }}</h2>
-                        <p class="achievement-description">
-                            {{achievement.description }}
-                        </p>
-
-                        {% if achievement.is_ongoing %}
-                        <p class="achievement-status">Ongoing</p>
-                        {% else %}
-                        <p class="achievement-status">Completed</p>
-                        {% endif %}
-                    </article>
+                        <article class="achievement-card">
+                            {% if achievement.achievement_image_url %}
+                                <img src="{{ achievement.achievement_image_url }}"
+                                     alt="Gambar {{ achievement.title }}"
+                                     class="achievement-image">
+                            {% endif %}
+                            <h2>{{ achievement.title }}</h2>
+                            <span class="achievement-category">{{ achievement.tech_stack }}</span>
+                            <p class="achievement-description">{{ achievement.description }}</p>
+                            <div class="achievement-card-actions">
+                                <div class="achievement-actions">
+                                    {% if achievement.achievement_url %}
+                                        <a href="{{ achievement.achievement_url }}" class="button">Lihat Prestasi</a>
+                                    {% endif %}
+                                    {% include "achievement_delete_modal.html" with achievement=achievement %}
+                                </div>
+                            </div>
+                        </article>
                     {% empty %}
-                    <p class="empty-state">
-                        No achievement has been added yet.
-                    </p>
+                        {% if title_query %}
+                            <p class="empty-state">Tidak ada achievement dengan nama tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada achievement yang ditambahkan.</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </section>
+
     </main>
+
 {% endblock content %}
 

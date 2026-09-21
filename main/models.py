@@ -26,6 +26,9 @@ class Experience(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+    tech_stack = models.CharField(max_length=255, blank=True, default="")
+    experience_url = models.URLField(blank=True)
+    experience_image_url = models.URLField(blank=True, max_length=500)
 
     def __str__(self):
         return self.title
@@ -51,6 +54,9 @@ class Skills(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+    tech_stack = models.CharField(max_length=255, blank=True, default="")
+    skills_url = models.URLField(blank=True)
+    skills_image_url = models.URLField(blank=True, max_length=500)
     
     def __str__(self):
         return self.title
@@ -77,6 +83,9 @@ class Education(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+    tech_stack = models.CharField(max_length=255, blank=True, default="")
+    education_url = models.URLField(blank=True)
+    education_image_url = models.URLField(blank=True, max_length=500)
         
     def __str__(self):
         return self.title
@@ -101,7 +110,7 @@ class Project(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
-    tech_stack = models.CharField(max_length=255)
+    tech_stack = models.CharField(max_length=255, blank=True, default="")
     project_url = models.URLField(blank=True)
     project_image_url = models.URLField(blank=True, max_length=500)
 
@@ -131,6 +140,9 @@ class Achievement(models.Model):
     thumbnail = models.URLField(blank=True, null=True)
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+    tech_stack = models.CharField(max_length=255, blank=True, default="")
+    achievement_url = models.URLField(blank=True)
+    achievement_image_url = models.URLField(blank=True, max_length=500)
         
     def __str__(self):
         return self.title

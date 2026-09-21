@@ -4,33 +4,59 @@
 
     <!-- Poin 3: Seluruh elemen <main>...</main> diganti dengan kode panduan -->
     <main>
-        <section class="skill-section" id="skill">
+            <section class="skill-section" id="skill">
             <div class="container">
-                <p class="section-kicker">My journey so far</p>
-                <h1>Skills</h1>
-
-                <div class="skill-grid">
-                    {% for skills in skills_list %}
-                    <article class="skill-card">
-                        <span class="skill-category">
-                            {{ skill.get_category_display }}
-                        </span>
-                        <h2>{{ skill.title }}</h2>
-
-                        {% if skill.is_ongoing %}
-                        <p class="skill-status">Ongoing</p>
-                        {% else %}
-                        <p class="skill-status">Completed</p>
-                        {% endif %}
-                    </article>
+                <p class="section-kicker">Skill yang saya bangun</p>
+                <div class="skill-header">
+                    <h1>Skills</h1>
+                    <a href="{% url 'main:create_skills' %}"
+                       class="button skill-add-button">
+                        <span aria-hidden="true">+</span>
+                        Tambah Skill
+                    </a>
+                </div>
+                <form method="get"
+                      action="{% url 'main:show_skills' %}"
+                      class="skill-search">
+                    <input type="search"
+                           name="title"
+                           value="{{ title_query }}"
+                           placeholder="Cari berdasarkan nama skill"
+                           class="project-search__input"
+                           aria-label="Cari berdasarkan nama skill">
+                    <button type="submit" class="button">Cari</button>
+                </form>
+                <div class="project-grid project-grid">
+                    {% for skill in skills_list %}
+                        <article class="project-card">
+                            {% if skill.skills_image_url %}
+                                <img src="{{ skill.skills_image_url }}"
+                                     alt="Gambar {{ skill.title }}"
+                                     class="skill-image">
+                            {% endif %}
+                            <h2>{{ skill.title }}</h2>
+                            <span class="skill-category">{{ skill.tech_stack }}</span>
+                            <div class="skill-card-actions">
+                                <div class="skill-actions">
+                                    {% if skill.skills_url %}
+                                        <a href="{{ skill.skills_url }}" class="button">Lihat Skill</a>
+                                    {% endif %}
+                                    {% include "skills_delete_modal.html" with skill=skill %}
+                                </div>
+                            </div>
+                        </article>
                     {% empty %}
-                    <p class="empty-state">
-                        No skill has been added yet.
-                    </p>
+                        {% if title_query %}
+                            <p class="empty-state">Tidak ada skill dengan nama tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada skill yang ditambahkan.</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </section>
+
     </main>
 
 {% endblock content %}
+
