@@ -13,19 +13,29 @@ from main.forms import ExperienceForm
 from main.forms import EducationForm
 from main.forms import SkillsForm
 from main.forms import AchievementForm
+from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
+
 
 # Create your views here.
 def show_main(request):
+    last_login = request.COOKIES.get('last_login', 'No active login session / Cookie not found')
     context = {
         "name": "Muhammad Ghaisan Raya",
         "npm": "2506624493",
         "study_program": "S1 Ilmu Komputer",
         "bio": (
-            "A Computer Science student at Universitas Indonesia interested "
-            "in software development and education."
+            "Mahasiswa Ilmu Komputer Universitas Indonesia yang tertarik "
+            "pada pengembangan perangkat lunak dan pendidikan."
         ),
+        "last_login": last_login,
     }
     return render(request, "index.html", context)
+
 
 
 def show_experience(request):
@@ -74,7 +84,11 @@ def show_achievement(request):
         }
     return render(request, "achievement.html", context)
 
+@login_required(login_url="/login/")
 def create_project(request):
+    if not request.user.is_superuser:
+        raise PermissionDenied
+
     form = ProjectForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -107,6 +121,21 @@ def delete_project(request, project_id):
         return redirect("main:show_project")
 
     return redirect("main:show_project")
+
+@login_required(login_url="/login/")
+def toggle_star(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    if request.method == "POST":
+        # If this account has already starred it, remove the star.
+        # If not, add one.
+        if request.user in project.starred_by.all():
+            project.starred_by.remove(request.user)
+        else:
+            project.starred_by.add(request.user)
+
+    return redirect("main:show_projects")
+
 
 def create_experience(request):
     form = ExperienceForm(request.POST or None)
@@ -243,6 +272,39 @@ def delete_achievement(request, achievement_id):
         return redirect("main:show_achievement")
 
     return redirect("main:show_achievement")
+
+def register(request):
+    form = UserCreationForm(request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        form.save()
+        messages.success(request, "Account created successfully. Please log in.")
+        return redirect("main:login")
+
+    context = {
+        "name": "Muhammad Ghaisan Raya",
+        "form": form,
+    }
+    return render(request, "register.html", context)
+
+def login_user(request):
+    form = AuthenticationForm(request, data=request.POST or None)
+
+    if request.method == "POST" and form.is_valid():
+        login(request, form.get_user())
+        return redirect("main:show_main")
+
+    context = {
+        "name": "muhammad.ghaisan",
+        "form": form,
+    }
+    return render(request, "login.html", context)
+
+def logout_user(request):
+    logout(request)
+    response = redirect("main:show_main")
+    response.delete_cookie('last_login')
+    return response
 
 
 
