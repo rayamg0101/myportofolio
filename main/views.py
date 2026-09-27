@@ -19,6 +19,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+import datetime
+
 
 
 # Create your views here.
@@ -109,7 +111,7 @@ def get_projects_json(request):
     if title_query:
         projects = projects.filter(title__icontains=title_query)
 
-    projects_json = serializers.serialize("json", projects)
+    projects_json = serializers.serialize("json", projects, use_natural_foreign_keys=True) 
     return HttpResponse(projects_json, content_type="application/json")
 
 def delete_project(request, project_id):
