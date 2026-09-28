@@ -28,6 +28,9 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login_user, name="login"),
     path("logout/", logout_user, name="logout"),
-    path("projects/<uuid:project_id>/star/",toggle_star,name="toggle_star",),
-
+    path("projects/<uuid:project_id>/star/",toggle_star,name="toggle_star"),
+    path("experiences/<uuid:experiencet_id>/star/",toggle_star,name="toggle_star"),
+    path("skills/<uuid:skills_id>/star/",toggle_star,name="toggle_star"),
+    path("educations/<uuid:education_id>/star/",toggle_star,name="toggle_star"),
+    path("achievements/<uuid:achievement_id>/star/",toggle_star,name="toggle_star"),
 ]

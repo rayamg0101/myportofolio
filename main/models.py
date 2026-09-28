@@ -30,6 +30,7 @@ class Experience(models.Model):
     tech_stack = models.CharField(max_length=255, blank=True, default="")
     experience_url = models.URLField(blank=True)
     experience_image_url = models.URLField(blank=True, max_length=500)
+    starred_by = models.ManyToManyField(User, related_name="starred_experiences", blank=True)
 
     def __str__(self):
         return self.title
@@ -58,6 +59,7 @@ class Skills(models.Model):
     tech_stack = models.CharField(max_length=255, blank=True, default="")
     skills_url = models.URLField(blank=True)
     skills_image_url = models.URLField(blank=True, max_length=500)
+    starred_by = models.ManyToManyField(User, related_name="starred_skills", blank=True)
     
     def __str__(self):
         return self.title
@@ -87,6 +89,7 @@ class Education(models.Model):
     tech_stack = models.CharField(max_length=255, blank=True, default="")
     education_url = models.URLField(blank=True)
     education_image_url = models.URLField(blank=True, max_length=500)
+    starred_by = models.ManyToManyField(User, related_name="starred_educations", blank=True)
         
     def __str__(self):
         return self.title
@@ -148,6 +151,9 @@ class Achievement(models.Model):
     tech_stack = models.CharField(max_length=255, blank=True, default="")
     achievement_url = models.URLField(blank=True)
     achievement_image_url = models.URLField(blank=True, max_length=500)
+    starred_by = models.ManyToManyField(
+            User, related_name="starred_achievements", blank=True
+        )
         
     def __str__(self):
         return self.title

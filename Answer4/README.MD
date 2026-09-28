@@ -1,0 +1,1 @@
+Aku kerjakan Individual Assignment 4 ini tidak menggunakan AI sama sekali karena aku melihat caranya melalui tutorial 4 yang sudah kulakukan tadi

@@ -139,7 +139,11 @@ def toggle_star(request, project_id):
     return redirect("main:show_projects")
 
 
+@login_required(login_url="/login/")
 def create_experience(request):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     form = ExperienceForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -173,7 +177,25 @@ def delete_experience(request, experience_id):
 
     return redirect("main:show_experience")
 
+@login_required(login_url="/login/")
+def toggle_star(request, experience_id):
+    experience = get_object_or_404(Experience, pk=experience_id)
+
+    if request.method == "POST":
+        # If this account has already starred it, remove the star.
+        # If not, add one.
+        if request.user in experience.starred_by.all():
+            experience.starred_by.remove(request.user)
+        else:
+            experience.starred_by.add(request.user)
+
+    return redirect("main:show_experience")
+
+@login_required(login_url="/login/")
 def create_education(request):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     form = EducationForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -207,7 +229,25 @@ def delete_education(request, education_id):
 
     return redirect("main:show_education")
 
+@login_required(login_url="/login/")
+def toggle_star(request, education_id):
+    education = get_object_or_404(Education, pk=education_id)
+
+    if request.method == "POST":
+        # If this account has already starred it, remove the star.
+        # If not, add one.
+        if request.user in education.starred_by.all():
+            education.starred_by.remove(request.user)
+        else:
+            education.starred_by.add(request.user)
+
+    return redirect("main:show_education")
+
+@login_required(login_url="/login/")
 def create_skills(request):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     form = SkillsForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -241,7 +281,25 @@ def delete_skills(request, skills_id):
 
     return redirect("main:show_skills")
 
+@login_required(login_url="/login/")
+def toggle_star(request, skills_id):
+    skill = get_object_or_404(Skills, pk=skills_id)
+
+    if request.method == "POST":
+        # If this account has already starred it, remove the star.
+        # If not, add one.
+        if request.user in skill.starred_by.all():
+            skill.starred_by.remove(request.user)
+        else:
+            skill.starred_by.add(request.user)
+
+    return redirect("main:show_skills")
+
+@login_required(login_url="/login/")
 def create_achievement(request):
+    if not request.user.is_superuser:
+            raise PermissionDenied
+    
     form = AchievementForm(request.POST or None)
 
     if request.method == "POST" and form.is_valid():
@@ -272,6 +330,20 @@ def delete_achievement(request, achievement_id):
         achievement.delete()
         messages.success(request, "Achievement berhasil dihapus!")
         return redirect("main:show_achievement")
+
+    return redirect("main:show_achievement")
+
+@login_required(login_url="/login/")
+def toggle_star(request, achievement_id):
+    achievement = get_object_or_404(Achievement, pk=achievement_id)
+
+    if request.method == "POST":
+        # If this account has already starred it, remove the star.
+        # If not, add one.
+        if request.user in achievement.starred_by.all():
+            achievement.starred_by.remove(request.user)
+        else:
+            achievement.starred_by.add(request.user)
 
     return redirect("main:show_achievement")
 
