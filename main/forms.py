@@ -44,43 +44,17 @@ class ExperienceForm(ModelForm):
             "experience_image_url",
         ]
 
-        labels = {
-            "title": "Nama Experience",
-            "description": "Deskripsi Experience",
-            "tech_stack": "Apa yang berlaku",
-            "experience_url": "URL Experience",
-            "experience_image_url": "URL Gambar Experience",
-        }
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Experience name can't contain only HTML tags.")
+        return title
 
-        widgets = {
-            "title": TextInput(
-                attrs={
-                    "placeholder": "Portfolio Website",
-                    "maxlength": 255,
-                }
-            ),
-            "description": Textarea(
-                attrs={
-                    "placeholder": "Tell us about your project",
-                    "rows": 3,
-                }
-            ),
-            "tech_stack": TextInput(
-                attrs={
-                    "placeholder": "Django, Python, HTML, CSS",
-                }
-            ),
-            "experience_url": URLInput(
-                attrs={
-                    "placeholder": "https://github.com/kakBurhan/burhanquestv4",
-                }
-            ),
-            "experience_image_url": URLInput(
-                attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
-                }
-            ),
-        }
+    def clean_tech_stack(self):
+        return strip_tags(self.cleaned_data["tech_stack"]).strip()
+
+    def clean_description(self):
+        return strip_tags(self.cleaned_data["description"]).strip()
 
 class EducationForm(ModelForm):
     class Meta:
@@ -93,43 +67,17 @@ class EducationForm(ModelForm):
             "education_image_url",
         ]
 
-        labels = {
-            "title": "Nama Institusi",
-            "description": "Deskripsi Institusi",
-            "tech_stack": "Isi institusi",
-            "education_url": "URL Institusi",
-            "education_image_url": "URL Gambar Institusi",
-        }
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Education name can't contain only HTML tags.")
+        return title
 
-        widgets = {
-            "title": TextInput(
-                attrs={
-                    "placeholder": "Portfolio Website",
-                    "maxlength": 255,
-                }
-            ),
-            "description": Textarea(
-                attrs={
-                    "placeholder": "Tell us about your project",
-                    "rows": 3,
-                }
-            ),
-            "tech_stack": TextInput(
-                attrs={
-                    "placeholder": "Django, Python, HTML, CSS",
-                }
-            ),
-            "education_url": URLInput(
-                attrs={
-                    "placeholder": "https://github.com/kakBurhan/burhanquestv4",
-                }
-            ),
-            "education_image_url": URLInput(
-                attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
-                }
-            ),
-        }
+    def clean_tech_stack(self):
+        return strip_tags(self.cleaned_data["tech_stack"]).strip()
+
+    def clean_description(self):
+        return strip_tags(self.cleaned_data["description"]).strip()
 
 class SkillsForm(ModelForm):
     class Meta:
@@ -142,44 +90,15 @@ class SkillsForm(ModelForm):
             "skills_image_url",
         ]
 
-        labels = {
-            "title": "Nama skill",
-            "category": "Kategori skill",
-            "tech_stack": "Jenis skill",
-            "skills_url": "URL skill",
-            "skills_image_url": "URL Gambar skill",
-        }
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Skill name can't contain only HTML tags.")
+        return title
 
-        widgets = {
-            "title": TextInput(
-                attrs={
-                    "placeholder": "Portfolio Website",
-                    "maxlength": 255,
-                }
-            ),
-            "category": Textarea(
-                attrs={
-                    "placeholder": "Tell us about your skill",
-                    "rows": 3,
-                }
-            ),
-            "tech_stack": TextInput(
-                attrs={
-                    "placeholder": "Django, Python, HTML, CSS",
-                }
-            ),
-            "skills_url": URLInput(
-                attrs={
-                    "placeholder": "https://github.com/kakBurhan/burhanquestv4",
-                }
-            ),
-            "skills_image_url": URLInput(
-                attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
-                }
-            ),
-        }
-
+    def clean_tech_stack(self):
+        return strip_tags(self.cleaned_data["tech_stack"]).strip()
+    
 class AchievementForm(ModelForm):
     class Meta:
         model = Achievement
@@ -191,40 +110,14 @@ class AchievementForm(ModelForm):
             "achievement_image_url",
         ]
 
-        labels = {
-            "title": "Nama Achievement",
-            "description": "Deskripsi Achievement",
-            "tech_stack": "Jenis Achievement",
-            "achievement_url": "URL Achievement",
-            "achievement_image_url": "URL Gambar Achievement",
-        }
+    def clean_title(self):
+        title = strip_tags(self.cleaned_data["title"]).strip()
+        if not title:
+            raise ValidationError("Skill name can't contain only HTML tags.")
+        return title
 
-        widgets = {
-            "title": TextInput(
-                attrs={
-                    "placeholder": "Portfolio Website",
-                    "maxlength": 255,
-                }
-            ),
-            "description": Textarea(
-                attrs={
-                    "placeholder": "Tell us about your project",
-                    "rows": 3,
-                }
-            ),
-            "tech_stack": TextInput(
-                attrs={
-                    "placeholder": "Django, Python, HTML, CSS",
-                }
-            ),
-            "achievement_url": URLInput(
-                attrs={
-                    "placeholder": "https://github.com/kakBurhan/burhanquestv4",
-                }
-            ),
-            "achievement_image_url": URLInput(
-                attrs={
-                    "placeholder": "https://drive.google.com/thumbnail?id=...&sz=w1000",
-                }
-            ),
-        }
+    def clean_tech_stack(self):
+        return strip_tags(self.cleaned_data["tech_stack"]).strip()
+
+    def clean_description(self):
+        return strip_tags(self.cleaned_data["description"]).strip()

@@ -45,24 +45,37 @@ def show_main(request):
 
 
 def show_experience(request):
+    title_query = request.GET.get("title", "").strip()
+
     context = {
         "name": "Muhammad Ghaisan Raya",
-        "experience_list": Experience.objects.all(),
+        "title_query": title_query,
+        "form": ExperienceForm(),
+
     }
     return render(request, "experience.html", context)
 
 def show_skills(request):
+    title_query = request.GET.get("title", "").strip()
+
     context = {
         "name": "Muhammad Ghaisan Raya",
-        "skills_list": Skills.objects.all(),
-        }
+        "title_query": title_query,
+        "form": SkillsForm(),
+
+    }
     return render(request, "skills.html", context)
 
+
 def show_education(request):
+    title_query = request.GET.get("title", "").strip()
+
     context = {
-        "name": "Muhammad Ghaisan Raya",
-        "education_list": Education.objects.all(),
-        }
+        "name": "Burhan",
+        "title_query": title_query,
+        "form": EducationForm(),
+
+    }
     return render(request, "education.html", context)
 
 def show_project(request):
@@ -77,23 +90,17 @@ def show_project(request):
     return render(request, "project.html", context)
 
 
+def show_achievement(request):
+    title_query = request.GET.get("title", "").strip()
+
     context = {
-        "name": "Muhammad Ghaisan Raya",
-        "project_list": projects,
+        "name": "Burhan",
         "title_query": title_query,
-        "form": ProjectForm(),
+        "form": AchievementForm(),
 
     }
-    
-    return render(request, "project.html", context)
-
-
-def show_achievement(request):
-    context = {
-        "name": "Muhammad Ghaisan Raya",
-        "achievement_list": Achievement.objects.all(),
-        }
     return render(request, "achievement.html", context)
+
 
 @login_required(login_url="/login/")
 def create_project(request):
@@ -206,15 +213,36 @@ def create_experience(request):
     }
     return render(request, "experience_forms.html", context)
 
-def get_experience_json(request):
+def get_experiences_json(request):
     title_query = request.GET.get("title", "").strip()
-    experiences = Experience.objects.all()
+    experiences = Experience.objects.prefetch_related('starred_by').all()
 
     if title_query:
-        experience = experiences.filter(title__icontains=title_query)
+        experiences = experiences.filter(title__icontains=title_query)
 
-    experiences_json = serializers.serialize("json", experiences)
-    return HttpResponse(experiences_json, content_type="application/json")
+    # Manually build the JSON data so we can add the Star logic
+    data = []
+    for experience in experiences:
+        starred_users = experience.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(experience.id),
+            "fields": {
+                "title": experience.title,
+                "description": experience.description,
+                "tech_stack": experience.tech_stack,
+                "experience_url": experience.experience_url,
+                "experience_image_url": experience.experience_image_url,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
+
 
 def delete_experience(request, experience_id):
     experience = get_object_or_404(Experience, pk=experience_id)
@@ -240,6 +268,26 @@ def toggle_star(request, experience_id):
 
     return redirect("main:show_experience")
 
+@require_POST
+def create_experience_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Only the portfolio owner can add experiences."},
+            status=403,
+        )
+
+    form = ExperienceForm(request.POST)
+    if form.is_valid():
+        experience = form.save()
+        return JsonResponse(
+            {"message": "Experience added successfully.", "pk": str(experience.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
+
+
+
 @login_required(login_url="/login/")
 def create_education(request):
     if not request.user.is_superuser:
@@ -258,15 +306,35 @@ def create_education(request):
     }
     return render(request, "education_forms.html", context)
 
-def get_education_json(request):
+def get_educations_json(request):
     title_query = request.GET.get("title", "").strip()
-    educations = Education.objects.all()
+    Educations = Education.objects.prefetch_related('starred_by').all()
 
     if title_query:
-        education = educations.filter(title__icontains=title_query)
+        Educations = Educations.filter(title__icontains=title_query)
 
-    educations_json = serializers.serialize("json", educations)
-    return HttpResponse(educations_json, content_type="application/json")
+    # Manually build the JSON data so we can add the Star logic
+    data = []
+    for E in Educations:
+        starred_users = E.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(E.id),
+            "fields": {
+                "title": E.title,
+                "description": E.description,
+                "tech_stack": E.tech_stack,
+                "education_url": E.education_url,
+                "education_image_url": E.education_image_url,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
 
 def delete_education(request, education_id):
     education = get_object_or_404(Experience, pk=education_id)
@@ -292,6 +360,24 @@ def toggle_star(request, education_id):
 
     return redirect("main:show_education")
 
+@require_POST
+def create_education_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Only the portfolio owner can add educations."},
+            status=403,
+        )
+
+    form = EducationForm(request.POST)
+    if form.is_valid():
+        education = form.save()
+        return JsonResponse(
+            {"message": "Education added successfully.", "pk": str(education.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
+
 @login_required(login_url="/login/")
 def create_skills(request):
     if not request.user.is_superuser:
@@ -312,13 +398,33 @@ def create_skills(request):
 
 def get_skills_json(request):
     title_query = request.GET.get("title", "").strip()
-    skills = Skills.objects.all()
+    skills = Skills.objects.prefetch_related('starred_by').all()
 
     if title_query:
         skills = skills.filter(title__icontains=title_query)
 
-    skills_json = serializers.serialize("json", skills)
-    return HttpResponse(skills_json, content_type="application/json")
+    # Manually build the JSON data so we can add the Star logic
+    data = []
+    for s in skills:
+        starred_users = s.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(s.id),
+            "fields": {
+                "title": s.title,
+                "tech_stack": s.tech_stack,
+                "skills_url": s.skills_url,
+                "skills_image_url": s.skills_image_url,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
+
 
 def delete_skills(request, skills_id):
     skill = get_object_or_404(Skills, pk=skills_id)
@@ -344,6 +450,24 @@ def toggle_star(request, skills_id):
 
     return redirect("main:show_skills")
 
+@require_POST
+def create_skill_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Only the portfolio owner can add skills."},
+            status=403,
+        )
+
+    form = SkillsForm(request.POST)
+    if form.is_valid():
+        skill = form.save()
+        return JsonResponse(
+            {"message": "Education added successfully.", "pk": str(skill.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
+
 @login_required(login_url="/login/")
 def create_achievement(request):
     if not request.user.is_superuser:
@@ -362,15 +486,36 @@ def create_achievement(request):
     }
     return render(request, "achievement_forms.html", context)
 
-def get_achievement_json(request):
+def get_achievements_json(request):
     title_query = request.GET.get("title", "").strip()
-    achievements = Achievement.objects.all()
+    achievements = Achievement.objects.prefetch_related('starred_by').all()
 
     if title_query:
-        achievement = achievements.filter(title__icontains=title_query)
+        achievements = achievements.filter(title__icontains=title_query)
 
-    achievements_json = serializers.serialize("json", achievements)
-    return HttpResponse(achievements_json, content_type="application/json")
+    # Manually build the JSON data so we can add the Star logic
+    data = []
+    for a in achievements:
+        starred_users = a.starred_by.all()
+        is_starred = request.user in starred_users if request.user.is_authenticated else False
+        starred_by_names = ", ".join([u.username for u in starred_users])
+
+        data.append({
+            "pk": str(a.id),
+            "fields": {
+                "title": a.title,
+                "description": a.description,
+                "tech_stack": a.tech_stack,
+                "achievement_url": a.achievement_url,
+                "achievement_image_url": a.achievement_image_url,
+                "star_count": starred_users.count(),
+                "is_starred": is_starred,
+                "starred_by_names": starred_by_names,
+            }
+        })
+
+    return JsonResponse(data, safe=False)
+
 
 def delete_achievement(request, achievement_id):
     achievement = get_object_or_404(Achievement, pk=achievement_id)
@@ -395,6 +540,25 @@ def toggle_star(request, achievement_id):
             achievement.starred_by.add(request.user)
 
     return redirect("main:show_achievement")
+
+@require_POST
+def create_achievement_ajax(request):
+    if not request.user.is_superuser:
+        return JsonResponse(
+            {"message": "Only the portfolio owner can add achievements."},
+            status=403,
+        )
+
+    form = AchievementForm(request.POST)
+    if form.is_valid():
+        achievement = form.save()
+        return JsonResponse(
+            {"message": "Achievement added successfully.", "pk": str(achievement.id)},
+            status=201,
+        )
+
+    return JsonResponse({"errors": form.errors.get_json_data()}, status=400)
+
 
 def register(request):
     form = UserCreationForm(request.POST or None)
