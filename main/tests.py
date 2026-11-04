@@ -11,10 +11,31 @@ from main.models import Achievement
 class MainTest(TestCase):
     def setUp(self):
         self.experience = Experience.objects.create(
-            title="PBP Teaching Assistant",
-            description="Help students understand web development.",
-            category="part-time",
+                    title="PBP Teaching Assistant",
+                    description="Help students understand web development.",
+                    category="part-time",
+                )
+        self.skills = Skills.objects.create(
+                    title="Badminton",
+                    category="soft skill",
+                )
+        self.education = Education.objects.create(
+                    title="Universitas Indonesia",
+                    description="2025 - presenet",
+                    category="kuliah",
+                )
+        self.achievement = Education.objects.create(
+            title="INAUGURATIONS OF BANTARA SCOUTS (2024)",
+            description="2025 - presenet",
+            category="sekolah",
         )
+        self.project = Project.objects.create(
+                    title="Automatic Time-Based Power Switch (2023 - 2024)",
+                    description="Light switch programmed with Arduino programming for its usage process. The process of using it, namely starting from the Arduino IDE which is connected with cables to the switches where the Arduino IDE is programmed to work on the switches.",
+                    category="it",
+                )
+        
+    
 
     def test_main_url_is_accessible(self):
         response = self.client.get(reverse("main:show_main"))
@@ -49,7 +70,7 @@ class MainTest(TestCase):
         Experience.objects.all().delete()
         response = self.client.get(reverse("main:show_experience"))
 
-        self.assertContains(response, "No experience has been added yet.")
+        self.assertContains(response, "No experiences have been added or found yet.")
 
     def test_completed_experience(self):
         self.experience.ended_at = timezone.now()
@@ -57,14 +78,9 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_experience"))
 
         self.assertFalse(self.experience.is_ongoing)
-        self.assertContains(response, "Completed")
+        self.assertContains(response, "completed")
         self.assertNotContains(response, "Ongoing")
 
-    def setUp(self):
-        self.skills = Skills.objects.create(
-            title="Badminton",
-            category="soft skill",
-        )
 
     def test_main_url_is_accessible(self):
         response = self.client.get(reverse("main:show_main"))
@@ -85,7 +101,7 @@ class MainTest(TestCase):
         self.assertTrue(self.skills.is_ongoing)
 
     def test_skill_page(self):
-        response = self.client.get(reverse("main:show_skils"))
+        response = self.client.get(reverse("main:show_skills"))
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "skills.html")
@@ -99,7 +115,7 @@ class MainTest(TestCase):
         Skills.objects.all().delete()
         response = self.client.get(reverse("main:show_skills"))
 
-        self.assertContains(response, "No skill has been added yet.")
+        self.assertContains(response, "No skills have been added or found yet.")
 
     def test_completed_skill(self):
         self.skills.ended_at = timezone.now()
@@ -107,15 +123,9 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_skills"))
 
         self.assertFalse(self.skills.is_ongoing)
-        self.assertContains(response, "Completed")
+        self.assertContains(response, "completed")
         self.assertNotContains(response, "Ongoing")
 
-    def setUp(self):
-        self.education = Education.objects.create(
-            title="Universitas Indonesia",
-            description="2025 - presenet",
-            category="kuliah",
-        )
 
     def test_main_url_is_accessible(self):
         response = self.client.get(reverse("main:show_main"))
@@ -150,7 +160,7 @@ class MainTest(TestCase):
         Education.objects.all().delete()
         response = self.client.get(reverse("main:show_education"))
 
-        self.assertContains(response, "No education has been added yet.")
+        self.assertContains(response, "No educations have been added or found yet.")
 
     def test_completed_education(self):
         self.education.ended_at = timezone.now()
@@ -158,15 +168,9 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_education"))
 
         self.assertFalse(self.education.is_ongoing)
-        self.assertContains(response, "Completed")
+        self.assertContains(response, "completed")
         self.assertNotContains(response, "Ongoing")
 
-    def setUp(self):
-        self.project = Project.objects.create(
-            title="Automatic Time-Based Power Switch (2023 - 2024)",
-            description="Light switch programmed with Arduino programming for its usage process. The process of using it, namely starting from the Arduino IDE which is connected with cables to the switches where the Arduino IDE is programmed to work on the switches.",
-            category="it",
-        )
 
     def test_main_url_is_accessible(self):
         response = self.client.get(reverse("main:show_main"))
@@ -201,7 +205,7 @@ class MainTest(TestCase):
         Project.objects.all().delete()
         response = self.client.get(reverse("main:show_project"))
 
-        self.assertContains(response, "No project has been added yet.")
+        self.assertContains(response, "No projects have been added or found yet.")
 
     def test_completed_project(self):
         self.project.ended_at = timezone.now()
@@ -209,15 +213,8 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_project"))
 
         self.assertFalse(self.project.is_ongoing)
-        self.assertContains(response, "Completed")
+        self.assertContains(response, "completed")
         self.assertNotContains(response, "Ongoing")
-
-    def setUp(self):
-        self.achievement = Achievement.objects.create(
-            title="INAUGURATIONS OF BANTARA SCOUTS (2024)",
-            description="Complete the tasks written in the SKU (General Competency Requirements) book",
-            category="sekolah",
-        )
 
     def test_main_url_is_accessible(self):
         response = self.client.get(reverse("main:show_main"))
@@ -233,7 +230,7 @@ class MainTest(TestCase):
         self.assertEqual(response.status_code, 404)
 
     def test_achievement_model(self):
-        self.assertEqual(str(self.achievement), "INAUGURATIONS OF BANTARA SCOUTS (2024)")
+        self.assertEqual(self.achievement.title, "INAUGURATIONS OF BANTARA SCOUTS (2024)")
         self.assertEqual(self.achievement.category, "sekolah")
         self.assertTrue(self.achievement.is_ongoing)
 
@@ -252,7 +249,7 @@ class MainTest(TestCase):
         Achievement.objects.all().delete()
         response = self.client.get(reverse("main:show_achievement"))
 
-        self.assertContains(response, "No achievement has been added yet.")
+        self.assertContains(response, "No achievements have been added or found yet.")
 
     def test_completed_achievement(self):
         self.achievement.ended_at = timezone.now()
@@ -260,7 +257,7 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_achievement"))
 
         self.assertFalse(self.achievement.is_ongoing)
-        self.assertContains(response, "Completed")
+        self.assertContains(response, "completed")
         self.assertNotContains(response, "Ongoing")
 
 
