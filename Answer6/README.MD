@@ -1,0 +1,18 @@
+# Individual Assignment 6
+1. Kenyataan yang Sering Dilupakan: Seringkali kita merasa sudah menjadi arsitek perangkat lunak yang hebat hanya karena peladen (server) kita mengembalikan respons berupa format JSON. Padahal, mengembalikan JSON tidak serta-merta membuat sebuah API menjadi RESTful.
+
+Esensi yang Terlewat: REST adalah sebuah filosofi dan seperangkat aturan arsitektur, bukan sekadar gaya penulisan data. Jika sebuah aplikasi masih mengabaikan prinsip statelessness atau memperlakukan metode HTTP secara sembarangan (misalnya menghapus data penting menggunakan metode GET), maka seindah apapun format JSON yang dikembalikan, sistem tersebut tetap belum layak disebut REST.
+
+Perbedaan PUT dan PATCH:
+
+PUT (Penggantian Menyeluruh): Ibarat Anda berniat memperbaiki sebuah dokumen dengan mengirimkan seluruh isi naskah baru dari halaman pertama hingga terakhir. Jika ada bagian yang terlewat tidak dikirim, bagian tersebut dikhawatirkan hilang atau tereset.
+PATCH (Pembaruan Sebagian): Ibarat Anda datang ke percetakan dan hanya merevisi satu paragraf yang salah tanpa harus mencetak ulang seluruh buku dari awal. Jauh lebih efisien dan spesifik.
+2. Refleksi Pendekatan Manual: Menulis kamus data secara manual menggunakan JsonResponse ibarat memilih berjalan kaki melintasi pulau ketika kereta ekspres sudah disediakan. Cara tersebut memaksa kita menulis baris demi baris validasi if-else yang rentan luput dari perhatian.
+
+Keanggunan Serializer: Dengan memanfaatkan ModelSerializer di Django REST Framework, kita menyerahkan tugas-tugas administratif yang melelahkan—seperti validasi tipe data, pemeriksaan keunikan, hingga konversi objek database—kepada sistem yang sudah dirancang dengan sangat elegan. Memilih tetap bertahan dengan cara manual di era modern ini ibarat menolak kemudahan dengan penuh kesadaran.
+3. Batas Tanggung Jawab: Otentikasi memastikan "Siapa Anda?", sementara otorisasi memastikan "Apakah Anda diizinkan?". Keduanya adalah pilar yang berbeda namun sama-sama krusial.
+
+Kekeliruan Menaruh Harapan pada Antarmuka: Menyembunyikan tombol dengan perintah seperti v-if atau templat kondisional demi keamanan data adalah sebuah kesalahpahaman yang cukup fatal. Antarmuka hanyalah pelayan bagi kenyamanan pengguna. Penyerang yang cerdas tidak pernah mempedulikan tombol apa yang Anda sembunyikan; mereka akan langsung mengetuk pintu peladen melalui perangkat pengujian API. Tanpa adanya aturan izin (permission classes) yang ketat di tingkat peladen, pertahanan aplikasi Anda sesungguhnya rapuh tanpa disadari.
+4. Urgensi Token CSRF: Ketika sistem mengandalkan cookie sesi untuk mengenali pengguna, browser dengan patuh akan selalu menyertakan kredensial tersebut di setiap kunjungan lintas situs. Token CSRF hadir sebagai penjaga pintu yang memastikan bahwa sebuah permintaan modifikasi data benar-benar lahir dari niat sadar pengguna di antarmuka resmi, bukan dari skrip tersembunyi di situs lain.
+
+Jebakan Pengujian dengan force_authenticate: Mengandalkan force_authenticate dalam pengujian unit memang terasa sangat memudahkan karena kita dapat langsung melompati proses masuk yang rumit. Namun, cara pintas ini sekaligus menonaktifkan seluruh mekanisme pertahanan yang sedang kitauji, termasuk validasi token CSRF. Menguji keamanan dengan mematikan sistem keamanannya terlebih dahulu adalah sebuah kontradiksi yang elok, tetapi sayangnya tidak membuktikan apa pun tentang ketahanan aplikasi di dunia nyata.
